@@ -4,6 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import configuration from './config/configuration';
+import { StrapiService } from 'strapi/strapi.service';
+import { StrapiModule } from 'strapi/strapi.module';
+import { HttpModule } from '@nestjs/axios';
+import { CategoryModule } from './category/category.module';
+import { CareerModule } from 'career/career.module';
 
 @Module({
   imports: [
@@ -27,6 +32,12 @@ import configuration from './config/configuration';
     }),
     AuthModule,
     UsersModule,
+    StrapiModule,
+    HttpModule,
+    CategoryModule,
+    CategoryModule,
+    CareerModule,
   ],
+  providers: [StrapiService],
 })
 export class AppModule {}
