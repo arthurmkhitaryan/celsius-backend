@@ -33,7 +33,7 @@ export class StrapiService {
   }
 
   async getEntries(entity: string): Promise<any[]> {
-    const url = `${this.strapiUrl}/api/${entity}`;
+    const url = `${this.strapiUrl}/api/${entity}?sort[0]=id`;
     const response = await firstValueFrom(
       this.httpService.get(url, {
         headers: {
@@ -41,6 +41,7 @@ export class StrapiService {
         },
       }),
     );
+
     return response.data;
   }
 
