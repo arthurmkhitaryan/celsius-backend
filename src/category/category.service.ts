@@ -14,14 +14,14 @@ export class CategoryService {
       },
     });
 
-    const productData = { ...createCategoryDto, ...preparedData };
+    const categoryData = { ...createCategoryDto, ...preparedData };
 
-    const strapiProduct = await this.strapiService.createEntry(
+    const strapiCategory = await this.strapiService.createEntry(
       'categories',
-      productData,
+      categoryData,
     );
 
-    return strapiProduct;
+    return strapiCategory;
   }
 
   async findAll(): Promise<any[]> {

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -27,4 +27,10 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   houseFlatNumber: string;
+
+  @IsNotEmpty()
+  @IsEnum(['Customer', 'Partner'], {
+    message: 'Role must be either Customer or Partner',
+  })
+  role: string;
 }

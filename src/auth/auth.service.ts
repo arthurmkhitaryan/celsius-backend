@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
@@ -27,6 +27,7 @@ export class AuthService {
 
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.usersService.findOneByEmail(email);
+    console.log({ user, email, pass });
     if (user && (await bcrypt.compare(pass, user.password))) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
@@ -35,11 +36,26 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any, rememberMe: boolean) {
+  async login(
+    userCredentials: { email: string; password: string },
+    rememberMe: boolean,
+  ) {
+    // Validate user credentials
+    const user = await this.validateUser(
+      userCredentials.email,
+      userCredentials.password,
+    );
+
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
     const payload: JwtPayload = { email: user.email, sub: user.id };
-    const expiresIn = rememberMe ? '7d' : '1d'; // 7 days, if "Remember Me", else 1 day
+    const expiresIn = rememberMe ? '7d' : '1d'; // 7 days if "Remember Me", else 1 day
+
     return {
       access_token: this.jwtService.sign(payload, { expiresIn }),
+      user, // Optionally return user data
     };
   }
 }
