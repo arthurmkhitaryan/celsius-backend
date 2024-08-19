@@ -23,7 +23,7 @@ export class UsersService {
   }
 
   async findOne(id: number): Promise<User | null> {
-    return this.usersRepository.findOne({ where: { id } });
+    return this.strapiService.getEntry('customers', `${id}`);
   }
 
   async findAll(): Promise<User[]> {
