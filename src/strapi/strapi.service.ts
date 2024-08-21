@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class StrapiService {
   private readonly strapiUrl =
-    this.configService.get<string>('STRAPI_URL') || 'http://localhost:1337';
+    this.configService.get<string>('STRAPI_URL') || 'http://localhost:1367';
   private readonly apiToken =
     this.configService.get<string>('STRAPI_API_TOKEN');
 
@@ -18,6 +18,9 @@ export class StrapiService {
 
   async createEntry(entity: string, data: any): Promise<any> {
     try {
+      console.log(111, this.strapiUrl);
+      console.log(22, this.apiToken);
+      console.log(33, data);
       const url = `${this.strapiUrl}/api/${entity}`;
       const response = await firstValueFrom(
         this.httpService.post(
@@ -32,6 +35,7 @@ export class StrapiService {
       );
       return response.data;
     } catch (error) {
+      console.log(3333, error)
       if (error.response) {
         throw new HttpException(
           {

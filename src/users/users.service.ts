@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entity/user.entity';
 import { StrapiService } from 'strapi/strapi.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -18,6 +19,18 @@ export class UsersService {
       ...createUserDto,
       role: 'Customer',
     });
+
+    return strapiCustomer;
+  }
+
+  async update(id: number, dto: UpdateUserDto): Promise<User> {
+    const strapiCustomer = await this.strapiService.updateEntry(
+      'customers',
+      id.toString(),
+      {
+        ...dto,
+      },
+    );
 
     return strapiCustomer;
   }
