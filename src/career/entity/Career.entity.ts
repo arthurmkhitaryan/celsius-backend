@@ -1,4 +1,4 @@
-// src/product/product.entity.ts
+// src/product/contact-us.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

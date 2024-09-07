@@ -18,10 +18,8 @@ export class StrapiService {
 
   async createEntry(entity: string, data: any): Promise<any> {
     try {
-      console.log(111, this.strapiUrl);
-      console.log(22, this.apiToken);
-      console.log(33, data);
       const url = `${this.strapiUrl}/api/${entity}`;
+
       const response = await firstValueFrom(
         this.httpService.post(
           url,
@@ -29,13 +27,13 @@ export class StrapiService {
           {
             headers: {
               Authorization: `Bearer ${this.apiToken}`,
+              'Content-Type': 'application/json',
             },
           },
         ),
       );
       return response.data;
     } catch (error) {
-      console.log(3333, error)
       if (error.response) {
         throw new HttpException(
           {

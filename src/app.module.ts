@@ -9,6 +9,8 @@ import { StrapiModule } from 'strapi/strapi.module';
 import { HttpModule } from '@nestjs/axios';
 import { CategoryModule } from './category/category.module';
 import { CareerModule } from 'career/career.module';
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { MailerModule } from './mailer/mailer.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { CareerModule } from 'career/career.module';
     CategoryModule,
     CategoryModule,
     CareerModule,
+    ContactUsModule,
+    MailerModule,
   ],
   providers: [StrapiService],
 })
