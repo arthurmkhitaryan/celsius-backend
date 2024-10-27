@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { ConfigService } from '@nestjs/config';
+import { AttachmentInterface } from './types/attachment.interface';
 
 @Injectable()
 export class MailerService {
@@ -16,13 +17,16 @@ export class MailerService {
     });
   }
 
-  async sendMail(to: string, subject: string, text: string) {
+  async sendMail(to: string, subject: string, text: string, attachment?: AttachmentInterface) {
     const mailOptions = {
       to,
       subject,
       text,
     };
 
-    await this.transporter.sendMail(mailOptions);
+    await this.transporter.sendMail({
+      ...mailOptions,
+      attachments: attachment ? [attachment] : [],
+    });
   }
 }

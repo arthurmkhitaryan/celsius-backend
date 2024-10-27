@@ -4,9 +4,10 @@ import { StrapiModule } from 'strapi/strapi.module';
 import { CareerController } from './career.controller';
 import { Career } from './entity/Career.entity';
 import { CareerService } from './career.service';
+import { MailerModule } from 'mailer/mailer.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Career]), StrapiModule],
+  imports: [TypeOrmModule.forFeature([Career]), StrapiModule, MailerModule],
   controllers: [CareerController],
   providers: [CareerService],
   exports: [CareerService],
