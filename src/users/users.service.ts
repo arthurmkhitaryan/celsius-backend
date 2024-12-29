@@ -46,6 +46,6 @@ export class UsersService {
   async findOneByEmail(email: string): Promise<User | null> {
     const user = await this.strapiService.getEntryByEmail('customers', email);
 
-    return user.attributes;
+    return { id : user.id, ...user.attributes };
   }
 }
