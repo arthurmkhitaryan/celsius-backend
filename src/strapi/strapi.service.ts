@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class StrapiService {
   private readonly strapiUrl =
-    this.configService.get<string>('STRAPI_URL') || 'http://localhost:1367';
+    this.configService.get<string>('STRAPI_URL') || 'http://localhost:1337';
   private readonly apiToken =
     this.configService.get<string>('STRAPI_API_TOKEN');
 

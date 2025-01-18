@@ -17,7 +17,12 @@ export class MailerService {
     });
   }
 
-  async sendMail(to: string, subject: string, text: string, attachment?: AttachmentInterface) {
+  async sendMail(
+    to: string,
+    subject: string,
+    text: string,
+    attachment?: AttachmentInterface,
+  ) {
     const mailOptions = {
       to,
       subject,

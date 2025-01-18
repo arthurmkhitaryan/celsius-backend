@@ -1,14 +1,9 @@
-import {
-  Controller,
-  Post,
-  Body,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
 import { ContactUsService } from './contact-us.service';
 import { ContactUsEntity } from './entity/contact-us.entity';
 import { CreateContactUsDto } from './dto/createContactUs.dto';
 
-@Controller('contact-us')
+@Controller('contacts')
 export class ContactUsController {
   constructor(private readonly contactUsService: ContactUsService) {}
 

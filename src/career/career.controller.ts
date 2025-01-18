@@ -1,7 +1,22 @@
-import { Controller, Get, Param, ParseIntPipe, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CareerService } from './career.service';
-
+interface MulterFile {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  size: number;
+  buffer: Buffer;
+}
 @Controller('careers')
 export class CareerController {
   constructor(private readonly careerService: CareerService) {}
@@ -18,9 +33,7 @@ export class CareerController {
 
   @Post('send-cv')
   @UseInterceptors(FileInterceptor('attachment'))
-  create(
-    @UploadedFile() file: Express.Multer.File
-  ): Promise<void> {
+  create(@UploadedFile() file: MulterFile): Promise<void> {
     console.log(1233, file);
     return this.careerService.sendCv(file);
   }

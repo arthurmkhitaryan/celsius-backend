@@ -11,6 +11,7 @@ import { CategoryModule } from './category/category.module';
 import { CareerModule } from 'career/career.module';
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { MailerModule } from './mailer/mailer.module';
+import { PartnerModule } from 'partners/partner.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { MailerModule } from './mailer/mailer.module';
     CareerModule,
     ContactUsModule,
     MailerModule,
+    PartnerModule,
   ],
   providers: [StrapiService],
 })

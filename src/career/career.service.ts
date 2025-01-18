@@ -19,10 +19,15 @@ export class CareerService {
   }
 
   async sendCv(file: any): Promise<void> {
-    await this.mailerService.sendMail("celsiusarmenia@mail.ru", "CV", "Please find the attached CV.", {
-      filename: file.originalname,
-      content: file.buffer,
-      contentType: file.mimetype,
-    });
+    await this.mailerService.sendMail(
+      'celsiusarmenia@mail.ru',
+      'CV',
+      'Please find the attached CV.',
+      {
+        filename: file.originalname,
+        content: file.buffer,
+        contentType: file.mimetype,
+      },
+    );
   }
 }

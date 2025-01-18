@@ -15,23 +15,23 @@ export class ContactUsService {
   ) {}
 
   findAll(): Promise<ContactUsEntity[]> {
-    return this.strapiService.getEntries('contact-uses');
+    return this.strapiService.getEntries('contacts');
   }
 
   findOne(id: number): Promise<ContactUsEntity | null> {
-    return this.strapiService.getEntry('contact-uses', id.toString());
+    return this.strapiService.getEntry('contacts', id.toString());
   }
 
   async create(contactUs: CreateContactUsDto): Promise<ContactUsEntity> {
     const contactUsData = await this.strapiService.createEntry(
-      'contact-uses',
+      'contacts',
       contactUs,
     );
 
     await this.mailerService.sendMail(
       contactUs.email,
       'Celsius',
-      'Thank you. We will respond as soon as possible.',
+      'Thank you. We will respond as soon as possible. Contact Us',
     );
 
     return contactUsData;

@@ -6,29 +6,11 @@ export class ContactUsEntity {
   id: number;
 
   @Column('varchar')
-  firstName: string;
-
-  @Column('varchar')
-  lastName: string;
-
-  @Column('varchar')
-  companyName: string;
+  name: string;
 
   @Column('varchar')
   email: string;
 
-  @Column('varchar')
-  phoneNumber: string;
-
-  @Column('varchar')
-  postCode: string;
-
-  @Column('text')
-  address: string;
-
-  @Column({ type: 'text', nullable: true })
-  comment: string;
-
-  @Column({ type: 'int', nullable: true })
-  employess: number;
+  @Column({ type: 'text' })
+  message: string;
 }
