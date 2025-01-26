@@ -10,6 +10,29 @@ export class CareerService {
     private readonly mailerService: MailerService,
   ) {}
 
+  async create(file: any, body: any): Promise<void> {
+    // Combine file and form data into the email
+    const emailBody = `
+      Name: ${body.name}
+      Surname: ${body.surname}
+      Email: ${body.email}
+      Phone: ${body.phone}
+      Position: ${body.position}
+      Other Information: ${body.otherInfo}
+    `;
+
+    await this.mailerService.sendMail(
+      'celsiusarmenia@mail.ru',
+      'New Career Application',
+      emailBody,
+      {
+        filename: file.originalname,
+        content: file.buffer,
+        contentType: file.mimetype,
+      },
+    );
+  }
+
   async findAll(): Promise<any[]> {
     return this.strapiService.getEntries('careers');
   }

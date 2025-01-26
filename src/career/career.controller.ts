@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Param,
@@ -21,6 +22,15 @@ interface MulterFile {
 export class CareerController {
   constructor(private readonly careerService: CareerService) {}
 
+  @Post()
+  @UseInterceptors(FileInterceptor('cv'))
+  createCV(
+    @UploadedFile() file: MulterFile,
+    @Body() userData: Record<string, any>,
+  ): Promise<void> {
+    return this.careerService.create(file, userData);
+  }
+
   @Get()
   findAll(): Promise<any[]> {
     return this.careerService.findAll();
@@ -34,7 +44,6 @@ export class CareerController {
   @Post('send-cv')
   @UseInterceptors(FileInterceptor('attachment'))
   create(@UploadedFile() file: MulterFile): Promise<void> {
-    console.log(1233, file);
     return this.careerService.sendCv(file);
   }
 }
