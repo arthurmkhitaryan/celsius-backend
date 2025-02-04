@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreatePartnerDto {
   @IsString()
@@ -20,22 +20,6 @@ export class CreatePartnerDto {
   @IsString()
   @IsNotEmpty()
   phoneNumber: string;
-
-  @IsString()
-  @IsNotEmpty()
-  postCode: string;
-
-  @IsString()
-  @IsNotEmpty()
-  address: string;
-
-  @IsNumber()
-  @IsOptional()
-  employess?: number;
-
-  @IsString()
-  @IsNotEmpty()
-  city: string;
 
   @IsString()
   @IsNotEmpty()

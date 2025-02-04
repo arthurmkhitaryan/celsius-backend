@@ -9,7 +9,6 @@ export class PartnerController {
 
   @Post()
   create(@Body(ValidationPipe) dto: CreatePartnerDto): Promise<PartnerEntity> {
-    console.log({ dto });
     return this.partnerService.create(dto);
   }
 }

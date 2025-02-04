@@ -20,15 +20,6 @@ export class PartnerEntity {
   @Column('varchar')
   phoneNumber: string;
 
-  @Column('varchar')
-  postCode: string;
-
-  @Column('text')
-  address: string;
-
   @Column({ type: 'text', nullable: true })
   comment: string;
-
-  @Column({ type: 'int', nullable: true })
-  employess: number;
 }
