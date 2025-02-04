@@ -12,6 +12,7 @@ import { CareerModule } from 'career/career.module';
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { MailerModule } from './mailer/mailer.module';
 import { PartnerModule } from 'partners/partner.module';
+import { CalculatorModule } from './calculator/calculator.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { PartnerModule } from 'partners/partner.module';
     ContactUsModule,
     MailerModule,
     PartnerModule,
+    CalculatorModule,
   ],
   providers: [StrapiService],
 })

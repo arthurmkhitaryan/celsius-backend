@@ -2,12 +2,14 @@
 import { Injectable } from '@nestjs/common';
 import { StrapiService } from '../strapi/strapi.service';
 import { MailerService } from 'mailer/mailer.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CareerService {
   constructor(
     private readonly strapiService: StrapiService,
     private readonly mailerService: MailerService,
+    private readonly configService: ConfigService,
   ) {}
 
   async create(file: any, body: any): Promise<void> {
@@ -22,7 +24,7 @@ export class CareerService {
     `;
 
     await this.mailerService.sendMail(
-      'celsiusarmenia@mail.ru',
+      this.configService.getOrThrow<string>('EMAIL_FROM'),
       'New Career Application',
       emailBody,
       {
