@@ -45,7 +45,7 @@ export class CareerService {
 
   async sendCv(file: any): Promise<void> {
     await this.mailerService.sendMail(
-      'celsiusarmenia@mail.ru',
+      'celsiusllc21@gmail.com',
       'CV',
       'Please find the attached CV.',
       {
